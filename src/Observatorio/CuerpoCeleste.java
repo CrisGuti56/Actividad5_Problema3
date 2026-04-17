@@ -35,8 +35,19 @@ public class CuerpoCeleste implements Comparable<CuerpoCeleste> {
     }
 
     @Override
-    public int compareTo(CuerpoCeleste o) {
-        return this.nombre.compareToIgnoreCase(o.nombre);
+    public int compareTo(CuerpoCeleste otra) {
+        int r = 0;
+
+        // 1. Comparar nombre
+        if ((r = this.nombre.compareToIgnoreCase(otra.nombre)) != 0)
+            return r;
+
+        // 2. Si son iguales, comparar composición
+        if ((r = this.composicion.compareToIgnoreCase(otra.composicion)) != 0)
+            return r;
+
+        // 3. Como último criterio, cantidad de observaciones
+        return Integer.compare(this.observaciones.size(), otra.observaciones.size());
     }
 
     @Override

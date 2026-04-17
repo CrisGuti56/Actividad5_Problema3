@@ -60,8 +60,27 @@ public class Observacion implements Comparable<Observacion> {
     }
 
     @Override
-    public int compareTo(Observacion o) {
-        return Double.compare(this.distancia, o.distancia);
+    public int compareTo(Observacion otra) {
+        int r = 0;
+
+        // 1. Comparar distancia
+        if ((r = Double.compare(this.distancia, otra.distancia)) != 0)
+            return r;
+
+        // 2. Si son iguales, comparar periodo
+        if ((r = this.periodo.compareToIgnoreCase(otra.periodo)) != 0)
+            return r;
+
+        // 3. Si aún son iguales, comparar unidad
+        if ((r = this.unidadDistancia.compareToIgnoreCase(otra.unidadDistancia)) != 0)
+            return r;
+
+        // 4. Si todo es igual, comparar latitud (extra)
+        if ((r = Double.compare(this.ubicacion.getLatitud(), otra.ubicacion.getLatitud())) != 0)
+            return r;
+
+        // 5. Finalmente longitud
+        return Double.compare(this.ubicacion.getLongitud(), otra.ubicacion.getLongitud());
     }
 
     @Override

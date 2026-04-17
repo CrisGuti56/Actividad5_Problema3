@@ -11,11 +11,13 @@ public class Prueba {
 
         Observacion obs1 = new Observacion("Enero", 4.5, "años luz", ubicacion1);
         Observacion obs2 = new Observacion("Febrero", 4.8, "años luz", ubicacion2);
+        Observacion obs3 = new Observacion("Enero", 4.5, "años luz", ubicacion2);
 
         CuerpoCeleste estrella = new CuerpoCeleste("Alpha-1", "Gas");
 
         estrella.agregarObservacion(obs1);
         estrella.agregarObservacion(obs2);
+        estrella.agregarObservacion(obs3);
 
         // Orden usando Comparable (por distancia)
         Collections.sort(estrella.getObservaciones());
@@ -51,5 +53,13 @@ public class Prueba {
             System.out.println(o.getPeriodo());
         }
 
+        System.out.println("\nOrden con compareTo (múltiples criterios):");
+
+        Collections.sort(estrella.getObservaciones());
+
+        for (Observacion o : estrella.getObservaciones()) {
+            System.out.println(o.getPeriodo() + " - " + o.getDistancia());
+
+        }
     }
 }
